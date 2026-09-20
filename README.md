@@ -1,15 +1,30 @@
-# VTT Player Stats
+# Player Stats
 
-A Rust telemetry and analytics engine designed to transform recorded virtual tabletop gameplay events into player statistics, campaign records, and historical insights.
+A Rust project for tracking and analyzing statistics from games, applications, and other event-driven systems.
 
 ## Purpose
 
-PlayerStats focuses on structured gameplay data: damage, healing, kills, critical hits, and character deaths. Its purpose is to aggregate these events into meaningful measures of player contributions, encounter performance, and long-term campaign trends.
+Player Stats aims to turn structured events into totals, records, and historical insights. It is designed to be independent of a specific game or platform, so it can support any system that needs to track statistics.
+
+## Current Status
+
+The project is an early prototype. The current executable demonstrates incrementing a kill counter; event ingestion, storage, and analytics are planned.
 
 ## Planned Analytics
 
-- Player totals for damage, healing, kills, and other combat events.
-- Per-encounter averages and personal records, such as highest damage in a turn.
-- Campaign rankings and records across players.
-- Historical trends and damage consistency using variance and standard deviation.
-- Filtering and aggregation by player, encounter, or campaign.
+- Totals and counts for configurable statistics and event types.
+- Averages, personal records, and rankings.
+- Historical trends and consistency measures, including variance and standard deviation.
+- Filtering and aggregation by tracked entity, session, or time period.
+
+Possible uses include player performance, application activity, and other event-based statistics.
+
+## Run Locally
+
+Install Rust and Cargo, then run:
+
+```sh
+git clone git@github.com:csbabcock/player-stats.git
+cd player-stats
+cargo run
+```
