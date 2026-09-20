@@ -1,42 +1,33 @@
 # VTT Player Stats
 
-A small Rust prototype for tracking player statistics for a virtual tabletop (VTT).
+A Rust telemetry and analytics project intended to turn recorded virtual tabletop gameplay events into player statistics, campaign records, and historical insights.
 
-The current version demonstrates a basic kill counter: it starts at zero, adds one kill with `add_kill`, and prints the updated count. It does not yet accept player input or save statistics between runs.
+## Purpose
 
-## Requirements
+PlayerStats is designed to answer **"What can we learn from everything that happened?"** By processing events such as damage, healing, kills, critical hits, and character deaths, it aims to help players explore their characters' contributions and trends across encounters and campaigns.
 
-- Rust 1.85 or later with Cargo (the project uses Rust edition 2024).
-- No external crate dependencies are required.
+The planned analytics include:
 
-## Run locally
+- Player totals for damage, healing, kills, and other combat events.
+- Per-encounter averages and personal records, such as highest damage in a turn.
+- Campaign rankings and records across players.
+- Historical trends and damage consistency using measures such as variance and standard deviation.
+- Filtering and aggregation by player, encounter, or campaign.
 
-Clone the repository and run the program:
+## Role in the VTT
 
-```sh
-git clone https://github.com/csbabcock/vtt-player-stats.git
-cd vtt-player-stats
-cargo run
-```
+The intended architecture separates gameplay, simulation, and historical analysis:
 
-Expected program output:
+| Component | Responsibility |
+| --- | --- |
+| **Unity / C# VTT** | Run the game, capture gameplay events, and display results. |
+| **C++ EncounterLab** | Simulate possible encounters to estimate outcomes and probabilities: "What might happen?" |
+| **Rust PlayerStats** | Analyze recorded gameplay to produce statistics and insights: "What has happened?" |
 
-```text
-Kills: 1
-```
+Unity captures the events as they happen. PlayerStats processes those records into summaries, rankings, and analysis for the Unity UI.
 
-## Build
+## Learning Goals
 
-```sh
-cargo build --release
-```
+The project provides a practical setting for learning Rust through structured event processing: enums and pattern matching, collections, iterators, ownership and borrowing, and explicit handling of missing data and errors with `Option` and `Result`.
 
-The compiled executable is written to `target/release/`.
-
-## Project structure
-
-- `src/main.rs` — the kill-count helper and executable entry point.
-- `Cargo.toml` — package metadata and dependencies.
-- `Cargo.lock` — Cargo's dependency lockfile.
-
-Build artifacts in `target/` and IDE settings in `.idea/` are excluded from version control.
+Development is intended to begin as a standalone program or library, with Unity integration as a later milestone once the analytics work independently.
